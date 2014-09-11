@@ -15,7 +15,7 @@ FIRMWARE_PATH=core-firmware
 # core-firmware/applications
 # └── tinker
 #     └── application.cpp
-DEFAULT_APP=tinker
+DEFAULT_APP=serial
 
 BUILD_PATH=$(PWD)/build/
 
