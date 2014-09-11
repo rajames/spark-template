@@ -1,4 +1,4 @@
-# Spark
+# Spark Project Template
 Spark projects depend on the ```core-common```, ```core-communication-lib``` 
 and the ```core-firmware``` projects.
 
@@ -10,11 +10,13 @@ Because this project is set-up using git submodules, the advantage of locking
 the active revision of each submodule is now yours.
 
 We use this approach to ensure that every one of our developers' environments 
-are working with the right dependencies.
+have the right dependencies just to keep us all on the same page.
+
 When we decide to use newer revisions of submodules, we can make these changes
-and allow our developers to get up to speed by simply updating the git 
+and allow other developers to get up to speed by simply updating the git 
 submodules in one go. The nice thing is that we will not run into merge 
-conflicts since we do not to touch the codebase written by the Spark team.
+conflicts as frequently as we have in the past as we do not to touch the 
+codebase written by the Spark team.
 
 ## Usage
 We have a simple makefile ready for you to get started ASAP, so I would 
