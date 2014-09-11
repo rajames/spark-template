@@ -1,8 +1,10 @@
+include settings.mk
+
 compile:
-	cd core-firmware/build; make
+	cd $(PROJECT_PATH)/build; make APP=$(APP_NAME)
 
 clean:
-	cd core-firmware/build; make clean
+	cd $(PROJECT_PATH)/build; make clean
 
 all: clean compile
 
