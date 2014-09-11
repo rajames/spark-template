@@ -11,24 +11,24 @@ endif
 
 compile:
 	@make link
-	cd $(FIRMWARE_PATH)/build; make APP=$(APP_NAME) TARGETDIR=$(BUILD_PATH)
+	-cd $(FIRMWARE_PATH)/build; make APP=$(APP_NAME) TARGETDIR=$(BUILD_PATH)
 	@make unlink
 
 clean:
 	@make unlink
 	cd $(FIRMWARE_PATH)/build; make clean
+	$(RM) $(BUILD_PATH)
 
 unlink:
 	$(foreach app,$(APPLICATIONS),$(shell $(RM) $(FIRMWARE_PATH)/applications/$(app)))
-	@make apps
 
 link: unlink
 	$(foreach app,$(APPLICATIONS),$(shell $(LINK) $(PWD)/$(APPLICATIONS_PATH)/$(app) $(FIRMWARE_PATH)/applications/$(app)))
 	@make apps
 
 apps:
-	@echo "Applications in $(FIRMWARE_PATH)/applications"
-	@ls -l $(FIRMWARE_PATH)/applications
+	@echo "Applications in the $(APPLICATIONS_PATH) directory"
+	@ls -l $(APPLICATIONS_PATH)
 
 which:
 	@echo "I will compile the $(APP_NAME) application"
@@ -39,4 +39,4 @@ upload:
 
 all: clean compile
 
-.PHONY: clean compile apps link which upload
+.PHONY: clean compile apps unlink link which upload

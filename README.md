@@ -9,11 +9,47 @@ a development environment a bit quicker.
 Because this project is set-up using git submodules, the advantage of locking 
 the active revision of each submodule is now yours.
 
-We use this approach to ensure that ever developer's environment is comparable.
+We use this approach to ensure that every one of our developers' environments 
+are working with the right dependencies.
 When we decide to use newer revisions of submodules, we can make these changes
 and allow our developers to get up to speed by simply updating the git 
 submodules in one go. The nice thing is that we will not run into merge 
 conflicts since we do not to touch the codebase written by the Spark team.
+
+## Usage
+We have a simple makefile ready for you to get started ASAP, so I would 
+recommend you take a peek. For those who don't want to
+
+### Compile
+Build your application named ```tinker```.
+
+    make compile APP=tinker
+
+Build the ```DEFAULT_APP``` as specified in the ```settings.mk``` application 
+
+    make compile
+
+Please note that the compile make tasks creates the symlinks, attempts the 
+compilation and removes the symlinks prior to calling it quits.
+
+### Clean-up
+Remove all project symlinks and clean up the build directories
+
+    make clean
+
+### Information
+View which application is the to be compiled with the given CLI variables and
+settings
+
+    make which
+
+View which applications are available for compilation
+
+    make apps
+
+Upload the your application to a Spark core through USB
+
+    make upload
 
 ## Setup
 The assumption is made that your environment has been setup correctly. In case
@@ -35,8 +71,15 @@ You could also combine both steps by just running
 After setting up the project try to build the project.
 
 ## Compilation
-Compile the Spark project by running ```make compile``` or simply ```make``` 
-(which will take the liberty of cleaning your build directory as well).
+Compile the Spark project by running 
+
+    make compile
+    
+or simply 
+
+    make
+
+which will take the liberty of cleaning your build directory as well.
 
 As you may already know multiple applications may be contained within the 
 ```core-firmware/applications``` directory. You may select the application to
@@ -53,15 +96,15 @@ choosing. We would recommend you use the default directory which is simply the
 
 ## Structure
 In order to allow development without increased risk of merge conflicts as the
-Spark team keeps polishing their product, some effort has been invested in 
+Spark team keeps polishing the codebases, some effort has been invested in 
 keeping all project-specific code out of the Spark repositories.
 
 Instead of integrating all source code within the core-firmware project one may
 now use the ```core-firmware/applications``` directory to store user files.
-The chances of source files causing conflicts with new Spark updates is
-smaller when using the ```core-firmware/applications``` directory because the
-Spark team and you will no longer be touching the same files in the pursuit of
-greatness.
+The chances of source files running into merge conflicts with new Spark updates
+are smaller when using the ```core-firmware/applications``` directory because 
+the Spark team and you will no longer be touching the same files in the 
+pursuit of greatness.
 
 Instead of working inside ```core-firmware/applications``` we decided to take
 it one step further, by trying not to touch the ```core-firmware``` project at
