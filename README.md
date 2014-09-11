@@ -123,9 +123,15 @@ only ever touch the applications and build subdirectories. The rest it Spark's
 territory.
 
     your_project
-    ├── core-common-lib
-    ├── core-communications-lib
-    ├── core-firmware/applications
+    ├── Makefile
+    ├── README.md
+    ├── applications
+    │   ├── tinker
+    │   │   └── application.cpp
+    │   └── serial
+    │       ├── printsomething.cpp
+    │       ├── helpers.cpp
+    │       └── header.h
     ├── build
     │   ├── serial.bin
     │   ├── serial.elf
@@ -135,10 +141,7 @@ territory.
     │   ├── tinker.elf
     │   ├── tinker.hex
     │   └── tinker.map
-    └── applications
-        ├── tinker
-        │   └── application.cpp
-        └── serial
-            ├── printsomething.cpp
-            ├── helpers.cpp
-            └── header.h
+    ├── core-common-lib
+    ├── core-communications-lib
+    ├── core-firmware/applications
+    └── settings.mk
