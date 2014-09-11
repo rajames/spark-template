@@ -25,11 +25,11 @@ Build your application named ```tinker```.
 
     make compile APP=tinker
 
-Build the ```DEFAULT_APP``` as specified in the ```settings.mk``` application 
+Build the ```DEFAULT_APP``` as specified in the ```settings.mk``` file
 
     make compile
 
-Please note that the compile make tasks creates the symlinks, attempts the 
+Please note that the compile task creates the symlinks, attempts the 
 compilation and removes the symlinks prior to calling it quits.
 
 ### Clean-up
@@ -43,7 +43,8 @@ settings
 
     make which
 
-View which applications are available for compilation
+View which applications is currently available for compilation, upload or
+something else given the current system variables and project settings
 
     make apps
 
@@ -68,10 +69,8 @@ project by running
 You could also combine both steps by just running 
 ```git submodules update --init``` :wink:.
 
-After setting up the project try to build the project.
-
 ## Compilation
-Compile the Spark project by running 
+Compile by running 
 
     make compile
     
@@ -81,14 +80,14 @@ or simply
 
 which will take the liberty of cleaning your build directory as well.
 
-As you may already know multiple applications may be contained within the 
-```core-firmware/applications``` directory. You may select the application to
-compile by appending ```APP=APPLICATION_NAME``` to the make command, replacing
-```APPLICATION_NAME``` for the application you really want to compile.
+Multiple applications may be contained within the applications directory. You 
+may select the application to compile by appending ```APP=APPLICATION_NAME``` 
+to the make command, replacing ```APPLICATION_NAME``` for the application you 
+really want to compile.
 
 Unless ```APP``` is specified, the makefiles will regard the ```DEFAULT_APP``` 
 specified in the ```settings.mk``` file as the application to be built,
-effectively changing ```make``` to ```make APP=WHATEVER_DEFAULT_APP_IS```.
+effectively changing ```make``` to ```make APP=WHATEVER_THE_DEFAULT_APP_IS```.
 
 With the ```BUILD_PATH``` buildfiles are stored in a directory of your 
 choosing. We would recommend you use the default directory which is simply the
