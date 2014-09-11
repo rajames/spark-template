@@ -10,9 +10,12 @@ APP_NAME=$(APP)
 endif
 
 compile:
-	cd $(FIRMWARE_PATH)/build; make APP=$(APP_NAME)
+	@make link
+	cd $(FIRMWARE_PATH)/build; make APP=$(APP_NAME) TARGETDIR=$(BUILD_PATH)
+	@make unlink
 
 clean:
+	@make unlink
 	cd $(FIRMWARE_PATH)/build; make clean
 
 unlink:
@@ -20,7 +23,7 @@ unlink:
 	@make apps
 
 link: unlink
-	$(foreach app,$(APPLICATIONS),$(shell $(LINK) $(APPLICATIONS_PATH)/$(app) $(FIRMWARE_PATH)/applications/$(app)))
+	$(foreach app,$(APPLICATIONS),$(shell $(LINK) $(PWD)/$(APPLICATIONS_PATH)/$(app) $(FIRMWARE_PATH)/applications/$(app)))
 	@make apps
 
 apps:
@@ -31,6 +34,9 @@ which:
 	@echo "I will compile the $(APP_NAME) application"
 	@echo "I will use the firmware at $(FIRMWARE_PATH)"
 
+upload:
+	spark flash --usb $(BUILD_PATH)/$(APP_NAME).bin
+
 all: clean compile
 
-.PHONY: clean compile apps link which
+.PHONY: clean compile apps link which upload

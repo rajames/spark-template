@@ -16,3 +16,25 @@ FIRMWARE_PATH=core-firmware
 # └── tinker
 #     └── application.cpp
 DEFAULT_APP=tinker
+
+BUILD_PATH=$(PWD)/build/
+
+# The APPLICATIONS_PATH variable contains the name of the directory which 
+# contains the applications. Instead of throwing your application source code
+# inside the core-firmware directory you can use the APPLICATIONS_PATH 
+# directory to store all your application files.
+# 
+# Before an attempt to compile, all projects marked with the APPLICATIONS 
+# variable are symlinked into the core-firmware directory. After the attempt to
+# compile these symlinks are subsequently removed.
+#
+# With APPLICATIONS_PATH=apps we set the apps directory within our project root
+# as the directory to contain all Spark apps.
+APPLICATIONS_PATH=applications
+
+# The APPLICATIONS variable contains a space-delimited list of all applications
+# within the APPLICATIONS_PATH that are eligible for compilation. Simply 
+# stated, the APPLICATIONS variable allows one to mark the subdirectories of 
+# APPLICATIONS_PATH that represent Spark applications.
+# APPLICATIONS_PATH=serial tinker another_project
+APPLICATIONS=serial
