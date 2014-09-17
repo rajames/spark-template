@@ -1,4 +1,4 @@
-# Spark Template
+# Spark Project Template
 Spark projects depend on the ```core-common```, ```core-communication-lib``` 
 and the ```core-firmware``` projects.
 
@@ -10,7 +10,7 @@ Because this project is set-up using git submodules, the advantage of locking
 the active revision of each submodule is now yours.
 
 We use this approach to ensure that every one of our developers' environments 
-are working with the right dependencies.
+have the right dependencies and versions just to keep us all on the same page.
 
 When we decide to use newer revisions of submodules, we can update these 
 submodules and push these changes to allow our developers to get up to speed
@@ -44,12 +44,12 @@ template repository or
 
 ### Built-in Demo
 For the sake of demonstration, a demo application named ```serial``` has been 
-provided in the ```experiment/multiple-apps``` branch.
+provided in the ```demo/multiple-apps``` branch.
 
-By checking out the ```experiment/multiple-apps``` branch an ```applications```
+By checking out the ```demo/multiple-apps``` branch an ```applications```
 directory is created which contains the ```serial``` app.
 
-```git checkout experiment/multiple-apps```
+```git checkout demo/multiple-apps```
 
 Because your application is named ```serial``` the ```DEFAULT_APP``` variable
 set in ```settings.mk``` has to be set accordingly. Furthermore the 
@@ -168,9 +168,15 @@ only ever touch the applications and build subdirectories. The rest it Spark's
 territory.
 
     your_project
-    ├── core-common-lib
-    ├── core-communications-lib
-    ├── core-firmware/applications
+    ├── Makefile
+    ├── README.md
+    ├── applications
+    │   ├── tinker
+    │   │   └── application.cpp
+    │   └── serial
+    │       ├── printsomething.cpp
+    │       ├── helpers.cpp
+    │       └── header.h
     ├── build
     │   ├── serial.bin
     │   ├── serial.elf
@@ -180,10 +186,7 @@ territory.
     │   ├── tinker.elf
     │   ├── tinker.hex
     │   └── tinker.map
-    └── applications
-        ├── tinker
-        │   └── application.cpp
-        └── serial
-            ├── printsomething.cpp
-            ├── helpers.cpp
-            └── header.h
+    ├── core-common-lib
+    ├── core-communications-lib
+    ├── core-firmware/applications
+    └── settings.mk
