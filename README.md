@@ -10,17 +10,79 @@ Because this project is set-up using git submodules, the advantage of locking
 the active revision of each submodule is now yours.
 
 We use this approach to ensure that every one of our developers' environments 
-have the right dependencies just to keep us all on the same page.
+have the right dependencies and versions just to keep us all on the same page.
 
-When we decide to use newer revisions of submodules, we can make these changes
-and allow other developers to get up to speed by simply updating the git 
-submodules in one go. The nice thing is that we will not run into merge 
-conflicts as frequently as we have in the past as we do not to touch the 
-codebase written by the Spark team.
+When we decide to use newer revisions of submodules, we can update these 
+submodules and push these changes to allow our developers to get up to speed
+by simply updating their clone. The nice thing is that we will not run into
+merge conflicts since we do not (or hardly) touch the codebases written by the 
+[Spark team](https://github.com/spark).
+
+## Setup
+The assumption is made that your environment has been setup correctly. In case
+of doubt or problems consult the [Spark README](https://github.com/spark/core-firmware/blob/master/README.md)
+for the instructions on setting up the development environment.
+
+After cloning, initialize the submodules using
+
+    git submodule init
+
+And possibly update your submodules to reflect the changes required by the
+project by running
+
+    git submodule update
+
+You could also combine both steps by just running 
+```git submodule update --init``` :wink:.
+
+Once all Spark submodules are updated, an application will need to be added.
+For the sake of exploration you could 
+ - try our demo application, otherwise you
+ - follow our instructions for creating a new application within the 
+template repository or 
+ - add a new application as another git submodule.
+
+### Built-in Demo
+For the sake of demonstration, a demo application named ```serial``` has been 
+provided in the ```demo/multiple-apps``` branch.
+
+By checking out the ```demo/multiple-apps``` branch an ```applications```
+directory is created which contains the ```serial``` app.
+
+```git checkout demo/multiple-apps```
+
+Because your application is named ```serial``` the ```DEFAULT_APP``` variable
+set in ```settings.mk``` has to be set accordingly. Furthermore the 
+application's name also needs to be added to the ```APPLICATIONS``` variable.
+After performing the checkout these changes will be checkout out as well.
+
+### New Application within Current Repository
+If you want to set up a new application within the current repository you could
+simply create an ```applications``` directory in the project's root. Within 
+the ```applications``` directory you add a app directory which contains an
+arbitrary name as long as it simply contains alphanumeric characters and 
+underscores.
+
+Creating a ```geiger_counter``` application would result to the following 
+directory structure
+
+    spark-template
+    ├── core-common-lib
+    ├── core-communications-lib
+    ├── core-firmware/applications
+    └── applications
+        └── geiger_counter
+            └── application.cpp
+
+You are at liberty to create as much application as you please within the
+applications directory. Just make sure that you set the ```DEFAULT_APP``` and
+the ```APPLICATIONS``` variables in ```settings.mk``` accordingly.
 
 ## Usage
 We have a simple makefile ready for you to get started ASAP, so I would 
-recommend you take a peek. For those who don't want to
+recommend you take a peek. For those who don't want to read through the 
+makefile there is no other alternatives other than reading the rest of of this
+document.
 
 ### Compile
 Build your application named ```tinker```.
@@ -45,7 +107,7 @@ settings
 
     make which
 
-View which applications is currently available for compilation, upload or
+View which applications are currently available for compilation, upload or
 something else given the current system variables and project settings
 
     make apps
@@ -53,23 +115,6 @@ something else given the current system variables and project settings
 Upload the your application to a Spark core through USB
 
     make upload
-
-## Setup
-The assumption is made that your environment has been setup correctly. In case
-of doubt or problems consult the [Spark README](https://github.com/spark/core-firmware/blob/master/README.md)
-for the instructions on setting up the development environment.
-
-After cloning, initialize the submodules using
-
-    git submodules init
-
-And possibly update your submodules to reflect the changes required by the
-project by running
-
-    git submodules update
-
-You could also combine both steps by just running 
-```git submodules update --init``` :wink:.
 
 ## Compilation
 Compile by running 
