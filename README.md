@@ -150,7 +150,7 @@ now use the ```core-firmware/applications``` directory to store user files.
 The chances of source files running into merge conflicts with new Spark updates
 are smaller when using the ```core-firmware/applications``` directory because 
 the Spark team and you will no longer be touching the same files in the 
-pursuit of greatness.
+pursuit of building something that works :wrench:.
 
 Instead of working inside ```core-firmware/applications``` we decided to take
 it one step further, by trying not to touch the ```core-firmware``` project at
@@ -164,7 +164,7 @@ appropriately named subdirectories. Spark has documented the use of User
 applications in their [README on Building a User Application](https://github.com/spark/core-firmware/blob/master/build/readme.md#building-a-user-application).
 
 A simple example of the new project structure is presented below. This time you
-only ever touch the applications and build subdirectories. The rest it Spark's
+only ever touch the applications and build subdirectories. The rest is Spark's
 territory.
 
     your_project
